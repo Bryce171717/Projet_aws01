@@ -1,10 +1,11 @@
 resource "aws_instance" "Aws_ec2_01" {
-  ami           = var.ami
-  instance_type = var.instance_type
-  subnet_id     = var.subnet_id
-
-  tags = {
-    Name = var.instance_name
+  ami                         = var.ami
+  instance_type               = var.instance_type
+  subnet_id                   = var.subnet_id
+  key_name                    = var.key_name  # Utilisation de la variable key_name
+  associate_public_ip_address = true
+  tags                        = {
+    Name                      = var.instance_name
   }
 }
 
@@ -35,5 +36,5 @@ resource "aws_security_group" "web_sg" {
   tags = {
     Name = var.sg_name
   }
-}
 
+}

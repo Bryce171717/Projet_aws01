@@ -15,8 +15,7 @@ variable "subnet_cidr_block" {
 
 variable "availability_zone" {
   description = "Zone de disponibilité pour le sous-réseau"
-  default     = "eu-west-3"
-}
+ }
 
 variable "subnet_name" {
   description = "Nom du sous-réseau"

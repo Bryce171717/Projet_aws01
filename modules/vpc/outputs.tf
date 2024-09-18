@@ -7,3 +7,6 @@ output "subnet_id" {
   description = "L'ID du sous-réseau créé"
   value       = aws_subnet.main.id
 }
+
+
+

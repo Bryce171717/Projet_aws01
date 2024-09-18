@@ -9,11 +9,11 @@ variable "instance_type" {
 
 variable "subnet_id" {
   description = "ID du sous-réseau où l'instance EC2 sera déployée"
-}
+  }
 
 variable "vpc_id" {
   description = "ID du VPC"
-}
+  }
 
 variable "instance_name" {
   description = "Nom de l'instance EC2"
@@ -23,4 +23,8 @@ variable "instance_name" {
 variable "sg_name" {
   description = "Nom du groupe de sécurité"
   default     = "web-sg"
+}
+
+variable "key_name" {
+  description = "Nom de la clé SSH à utiliser pour l'instance"
 }

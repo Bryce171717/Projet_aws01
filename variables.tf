@@ -21,7 +21,7 @@ variable "subnet_name" {
 
 variable "availability_zone" {
   description = "Zone de disponibilité pour le sous-réseau"
-  default     = "eu-west-3"
+  default     = "eu-west-3a"
 }
 
 # Variables pour l'EC2
@@ -43,4 +43,9 @@ variable "instance_name" {
 variable "sg_name" {
   description = "Nom du groupe de sécurité associé à l'instance EC2"
   default     = "my-web-sg"
+}
+
+variable "key_name" {
+  description = "Nom de la clé SSH à utiliser pour l'instance"
+  default     = "terraform_key"
 }

@@ -23,4 +23,14 @@ module "ec2" {
   # Utilisation des outputs du module VPC
   subnet_id     = module.vpc.subnet_id
   vpc_id        = module.vpc.vpc_id
+
+  # clé SSH
+  key_name    = aws_key_pair.terraform_key.key_name
+}
+
+
+# Déclaration de la clé SSH dans le fichier main.tf à la racine
+resource "aws_key_pair" "terraform_key" {
+  key_name   = "terraform_key"
+  public_key = file("~/.ssh/terraform_key.pub")
 }
