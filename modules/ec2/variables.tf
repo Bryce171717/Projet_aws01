@@ -28,3 +28,8 @@ variable "sg_name" {
 variable "key_name" {
   description = "Nom de la clé SSH à utiliser pour l'instance"
 }
+
+variable "vpc_security_group_ids" {
+  description = "List of security group ids to assign to the instances"
+  default = "sg-0cdb94c66a06eb82f"
+}
