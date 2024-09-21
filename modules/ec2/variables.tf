@@ -8,8 +8,10 @@ variable "instance_type" {
 }
 
 variable "subnet_id" {
-  description = "ID du sous-réseau où l'instance EC2 sera déployée"
-  }
+  description = "The ID of the public subnet"
+  type        = string
+}
+
 
 variable "vpc_id" {
   description = "ID du VPC"

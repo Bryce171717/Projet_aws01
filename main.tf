@@ -38,14 +38,31 @@ resource "aws_key_pair" "terraform_key" {
 module "ec2_instances" {
   source = "./modules/ec2"
 
-  for_each = var.instances
+  for_each = var.instance
 
   instance_type = each.value.instance_type
   ami           = each.value.ami
   key_name      = each.value.key_name
 
   vpc_id        = module.vpc.vpc_id
-  subnet_id     = module.vpc.public_subnets[0]
-  vpc_security_group_ids = [aws_security_group.web_sg.id]
+  subnet_id     = module.vpc.public_subnet_id   # Utilisez un seul sous-réseau
+  security_group_ids = [module.security_group.security_group_id]
+}
 
+module "security_group" {
+  source              = "./modules/security_group"
+  name                = "web_sg"
+  description         = "Security group for web server"
+  vpc_id              = module.vpc.vpc_id
+  ingress_from_port   = 80
+  ingress_to_port     = 80
+  ingress_protocol    = "tcp"
+  ingress_cidr_blocks = ["0.0.0.0/0"]
+  egress_from_port    = 0
+  egress_to_port      = 0
+  egress_protocol     = "-1"
+  egress_cidr_blocks  = ["0.0.0.0/0"]
+  tags                = {
+    Name = "web_sg"
+  }
 }

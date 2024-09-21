@@ -8,5 +8,8 @@ output "subnet_id" {
   value       = aws_subnet.main.id
 }
 
-
+output "public_subnet" {
+  description = "public subnet"
+  value       = aws_subnet.public_subnet.id
+}
 
