@@ -31,5 +31,5 @@ variable "key_name" {
 
 variable "vpc_security_group_ids" {
   description = "List of security group ids to assign to the instances"
-  default = "sg-0cdb94c66a06eb82f"
+  type = list(string)
 }
