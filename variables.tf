@@ -49,3 +49,23 @@ variable "key_name" {
   description = "Nom de la clé SSH à utiliser pour l'instance"
   default     = "terraform_key"
 }
+variable "instances" {
+  description = "Configuration for multiple EC2 instances"
+  type = map(object({
+    instance_type = string
+    ami           = string
+    key_name      = string
+  }))
+  default = {
+    "instance1" = {
+      instance_type = "t2.micro"
+      ami           = "ami-0574a94188d1b84a1"
+      key_name      = "my-key"
+    },
+    "instance2" = {
+      instance_type = "t3.large"
+      ami           = "ami-0574a94188d1b84a1"
+      key_name      = "my-key"
+    }
+  }
+}

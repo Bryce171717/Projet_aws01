@@ -11,7 +11,7 @@ module "vpc" {
 }
 
 # Appel du module EC2
-module "ec2" {
+/*module "ec2" {
   source        = "./modules/ec2"
   
   # Utilisation des variables depuis variables.tf
@@ -27,10 +27,24 @@ module "ec2" {
   # clé SSH
   key_name    = aws_key_pair.terraform_key.key_name
 }
-
+*/
 
 # Déclaration de la clé SSH dans le fichier main.tf à la racine
 resource "aws_key_pair" "terraform_key" {
   key_name   = "terraform_key"
   public_key = file("~/.ssh/terraform_key.pub")
+}
+
+module "ec2_instances" {
+  source = "./modules/ec2"
+
+  for_each = var.instances
+
+  instance_type = each.value.instance_type
+  ami           = each.value.ami
+  key_name      = each.value.key_name
+
+  vpc_id        = module.vpc.vpc_id
+  subnet_id     = module.vpc.public_subnets[0]
+
 }
